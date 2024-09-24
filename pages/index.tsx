@@ -1,6 +1,8 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.scss';
 
 export default function Home() {
@@ -11,14 +13,7 @@ export default function Home() {
         <meta name="description" content="Discover cars and meet car enthusiasts" />
       </Head>
 
-      <header className={styles.header}>
-        <h1>Travato Cars</h1>
-        <nav>
-          <a href="/browse-cars">Browse Cars</a>
-          <a href="/car-meet">Car Meets</a>
-          <a href="/auth/login">Login</a>
-        </nav>
-      </header>
+      <Header />
 
       <main className={styles.main}>
         <section className={styles.hero}>
@@ -40,9 +35,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <p>© 2024 Travato Cars | <a href="/privacy">Privacy Policy</a></p>
-      </footer>
+      <Footer />
     </div>
   );
 }
