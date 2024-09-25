@@ -1,3 +1,5 @@
+
+
 import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router'; 
@@ -6,62 +8,58 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import styles from '../../styles/Auth.module.scss'; 
 
-const Login = () => {
-  const router = useRouter(); // Initialize useRouter
-  const [username, setUsername] = useState('');  
+const SignUp = () => {
+  const router = useRouter(); 
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login attempted with', { username, password });
+    console.log('Sign-up attempted with', { username, password });
 
-    const res = await fetch('http://localhost:8080/api/login', {
+    const res = await fetch('http://localhost:8080/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),  
+      body: JSON.stringify({ username, password }),
     });
 
     if (res.ok) {
-      setMessage('Login successful!');
-      // Navigate to home page after successful login
-      router.push('/'); // Redirect to the home page
+      setMessage('Sign-up successful! Redirecting...');
+      setTimeout(() => router.push('/auth/login'), 1500); 
     } else {
       const errorData = await res.json();
-      setMessage(errorData.error || 'Login failed');
+      setMessage(errorData.error || 'Sign-up failed');
     }
   };
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Login - Travato Cars</title>
+        <title>Sign Up - Travato Cars</title>
       </Head>
 
       <Header />
 
       <main className={styles.main}>
         <section className={styles.hero}>
-          <h2>Welcome Back to Travato Cars</h2>
+          <h2>Join Travato Cars</h2>
           <Image
             src="/images/poppy.jpg" 
-            alt="Login"
+            alt="Sign Up"
             width={500}
             height={300}
           />
-          <p>
-  Don't have an account? <a href="/auth/signup">Sign Up</a>
-</p>
         </section>
 
-        <section className={styles.loginForm}>
-          <h3>Login</h3>
+        <section className={styles.signUpForm}>
+          <h3>Sign Up</h3>
           {message && <p className={styles.message}>{message}</p>}
           <form onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
-              <label>Username:</label>  
+              <label>Username:</label>
               <input 
                 type="text"  
                 value={username} 
@@ -78,7 +76,7 @@ const Login = () => {
                 required 
               />
             </div>
-            <button type="submit">Login</button>
+            <button type="submit">Sign Up</button>
           </form>
         </section>
       </main>
@@ -88,4 +86,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
