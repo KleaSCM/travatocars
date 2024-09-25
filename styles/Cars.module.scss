@@ -1,25 +1,16 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .car-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
+    // Add styles for the container
+    padding: 20px;
     text-align: center;
-    margin: 16px;
-    width: 300px;
   
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
+    h1 { /* Scoped the h1 */
+      font-size: 2rem;
+      color: #333;
     }
   
-    button {
-      margin: 5px;
+    p {
+      font-size: 1.2rem;
+      color: #666;
     }
   }
   

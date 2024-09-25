@@ -26,8 +26,8 @@ const Login = () => {
 
     if (res.ok) {
       setMessage('Login successful!');
-      // Navigate to home page after successful login
-      router.push('/'); // Redirect to the home page
+      // Navigate to CarsPage after successful login
+      router.push('/CarsPage'); // Redirect to the CarsPage
     } else {
       const errorData = await res.json();
       setMessage(errorData.error || 'Login failed');
@@ -52,8 +52,8 @@ const Login = () => {
             height={300}
           />
           <p>
-  Don't have an account? <a href="/auth/signup">Sign Up</a>
-</p>
+            Don't have an account? <a href="/auth/signup">Sign Up</a>
+          </p>
         </section>
 
         <section className={styles.loginForm}>

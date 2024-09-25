@@ -7,6 +7,7 @@ import (
 	"travatocars-backend/api"
 	"travatocars-backend/utils"
 
+	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
 
@@ -23,21 +24,26 @@ func getCarsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	// Serve static files from the public directory
-	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("public/images"))))
+	// Create a new router
+	r := mux.NewRouter()
 
-	http.HandleFunc("/api/login", api.LoginHandler)
-	http.HandleFunc("/api/signup", api.SignUpHandler)
-	http.HandleFunc("/api/cars", getCarsHandler)
+	// Serve static files from the public directory
+	r.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("public/images"))))
+
+	// Define API routes
+	r.HandleFunc("/api/login", api.LoginHandler).Methods("POST")
+	r.HandleFunc("/api/signup", api.SignUpHandler).Methods("POST")
+	r.HandleFunc("/api/cars", getCarsHandler).Methods("GET")
 
 	// Configure CORS
 	corsHandler := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000"}, // allow your frontend URL
+		AllowedOrigins:   []string{"http://localhost:3000"},
 		AllowCredentials: true,
 	})
 
-	// Use the cors middleware
-	http.ListenAndServe(":8080", corsHandler.Handler(http.DefaultServeMux))
-
+	// Use the CORS middleware and start the server
 	log.Println("Starting server on :8080")
+	if err := http.ListenAndServe(":8080", corsHandler.Handler(r)); err != nil {
+		log.Fatalf("Could not start server: %s", err)
+	}
 }

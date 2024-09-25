@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CarCard from '../components/CarCard';
 import styles from '../styles/Cars.module.scss';
+import axios from 'axios';
 
 const CarsPage: React.FC = () => {
   const [cars, setCars] = useState<any[]>([]);
@@ -13,13 +14,11 @@ const CarsPage: React.FC = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/cars');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        setCars(data);
-      } catch (error) {
-        setError(error instanceof Error ? error.message : 'An unknown error occurred');
-        console.error('Error fetching cars:', error);
+        const response = await axios.get('http://localhost:8080/api/cars');
+        setCars(response.data);
+      } catch (error: any) {
+        setError(error.message);
+        console.error('Error fetching cars:', error); 
       } finally {
         setLoading(false);
       }
