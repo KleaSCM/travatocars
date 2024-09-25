@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "make": "Toyota",
+        "model": "Camry",
+        "year": 2021,
+        "condition": "new",
+        "modified": false,
+        "registered": true,
+        "serviceHistory": true,
+        "imageUrl": "/images/toyota-camry.jpg",
+        "link": "https://example.com/cars/toyota-camry"
+    },
+    {
+        "id": 2,
+        "make": "Honda",
+        "model": "Civic",
+        "year": 2020,
+        "condition": "used",
+        "modified": true,
+        "registered": true,
+        "serviceHistory": false,
+        "imageUrl": "/images/honda-civic.jpg",
+        "link": "https://example.com/cars/honda-civic"
+    },
+    {
+        "id": 3,
+        "make": "Ford",
+        "model": "Mustang",
+        "year": 2019,
+        "condition": "used",
+        "modified": true,
+        "registered": true,
+        "serviceHistory": true,
+        "imageUrl": "/images/ford-mustang.jpg",
+        "link": "https://example.com/cars/ford-mustang"
+    },
+    {
+        "id": 4,
+        "make": "Chevrolet",
+        "model": "Impala",
+        "year": 2018,
+        "condition": "used",
+        "modified": false,
+        "registered": false,
+        "serviceHistory": true,
+        "imageUrl": "/images/chevrolet-impala.jpg",
+        "link": "https://example.com/cars/chevrolet-impala"
+    }
+]

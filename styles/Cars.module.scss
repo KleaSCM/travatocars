@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .car-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin: 16px;
+    width: 300px;
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  
+    button {
+      margin: 5px;
+    }
+  }
+  
